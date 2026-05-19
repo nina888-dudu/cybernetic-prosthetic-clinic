@@ -2,508 +2,359 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>NEXUS MEDICAL | Santo Domingo Prosthetic Transformation</title>
-    <!-- Font Awesome 6 (free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARASAKA MEDICAL | Santo Domingo Transformation Plan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-dark: #050508;
+            --panel-dark: #0d0d13;
+            --accent-cyan: #00f3ff;
+            --accent-red: #ff003c;
+            --accent-gold: #ffb700;
+            --text-light: #f5f5fa;
+            --text-dim: #7e7e8c;
+            --border-glow: 0 0 15px rgba(0, 243, 255, 0.25);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: #03030C;
-            font-family: 'Inter', sans-serif;
-            color: #EBECF2;
-            line-height: 1.5;
-            scroll-behavior: smooth;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
+            line-height: 1.6;
         }
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .bg-glow {
-            position: fixed;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, rgba(0, 234, 255, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
-            border-radius: 50%;
-            top: -20%;
-            right: -20%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .bg-glow-2 {
-            position: fixed;
-            width: 80vh;
-            height: 80vh;
-            background: radial-gradient(circle, rgba(182, 36, 255, 0.06) 0%, rgba(0,0,0,0) 70%);
-            bottom: 0;
-            left: -30%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 30px;
+
+        /* Glitch Effect Elements */
+        .glitch-text {
+            font-family: 'Orbitron', sans-serif;
             position: relative;
-            z-index: 2;
+            color: var(--text-light);
         }
-        .navbar {
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 2px; text-shadow: -1px 0 var(--accent-red);
+            top: 0; color: var(--text-light); background: var(--bg-dark);
+            overflow: hidden; clip: rect(0,900px,0,0); 
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% { clip: rect(15px, 9999px, 66px, 0); }
+            100% { clip: rect(34px, 9999px, 55px, 0); }
+        }
+
+        /* Navigation */
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 0;
-            flex-wrap: wrap;
-            border-bottom: 1px solid rgba(0, 234, 255, 0.25);
-            margin-bottom: 20px;
+            padding: 25px 50px;
+            border-bottom: 1px solid #1a1a26;
+            background: rgba(5, 5, 8, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
         }
-        .logo {
-            font-family: 'Space Grotesk', monospace;
-            font-size: 1.7rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #FFFFFF, #00EAFF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .nav-links {
+        .logo-area {
             display: flex;
-            gap: 2rem;
             align-items: center;
-            flex-wrap: wrap;
+            gap: 15px;
         }
+        .logo-svg {
+            width: 45px; height: 45px;
+            fill: var(--text-light);
+            filter: drop-shadow(0 0 5px var(--accent-cyan));
+        }
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900; letter-spacing: 4px; font-size: 20px;
+        }
+        .nav-links { display: flex; gap: 35px; list-style: none; }
         .nav-links a {
-            text-decoration: none;
-            color: #D0D5F0;
-            font-weight: 500;
-            transition: 0.2s;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
-            cursor: pointer;
+            color: var(--text-dim); text-decoration: none;
+            font-family: 'Roboto Mono', monospace; font-size: 14px;
+            transition: 0.3s; text-transform: uppercase;
         }
-        .nav-links a:hover {
-            color: #00EAFF;
-            text-shadow: 0 0 5px #00EAFF;
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-cyan); text-shadow: var(--border-glow); }
+        
+        .cta-btn {
+            background: transparent; border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan); font-family: 'Orbitron', sans-serif;
+            padding: 10px 24px; font-weight: bold; cursor: pointer;
+            transition: 0.3s; letter-spacing: 1px;
+            box-shadow: var(--border-glow);
         }
-        .btn-outline-cyan {
-            border: 1.5px solid #00EAFF;
-            background: transparent;
-            padding: 8px 20px;
-            border-radius: 60px;
-            color: #00EAFF;
-            font-weight: 600;
-            transition: 0.25s;
-            cursor: pointer;
-        }
-        .btn-outline-cyan:hover {
-            background: #00EAFF20;
-            box-shadow: 0 0 12px #00EAFF40;
-        }
-        .btn-primary {
-            background: linear-gradient(105deg, #00C9FF, #00EAFF);
-            border: none;
-            padding: 14px 34px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 1rem;
-            color: #03030C;
-            cursor: pointer;
-            transition: 0.25s;
-            box-shadow: 0 0 10px #00EAFF60;
-        }
-        .btn-primary:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 22px #00EAFF;
-        }
-        .btn-secondary {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(0, 234, 255, 0.6);
-            padding: 14px 34px;
-            border-radius: 40px;
-            font-weight: 600;
-            color: #EBECF2;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-secondary:hover {
-            background: rgba(0, 234, 255, 0.15);
-            border-color: #00EAFF;
-        }
-        .hero { padding: 60px 0 80px 0; }
-        .hero-badge {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #00EAFF;
-            background: rgba(0, 234, 255, 0.1);
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 40px;
-            margin-bottom: 24px;
-        }
-        h1 {
-            font-size: 4.2rem;
-            font-weight: 800;
-            line-height: 1.2;
-            font-family: 'Space Grotesk', monospace;
-            background: linear-gradient(135deg, #FFFFFF 30%, #93F9FF 80%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 20px;
-        }
-        .hero-sub {
-            font-size: 1.25rem;
-            color: #B0B8E0;
-            max-width: 650px;
-            margin-bottom: 32px;
-        }
-        .home-to-hospital {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0,0,0,0.5);
-            padding: 8px 18px;
-            border-radius: 60px;
-            border-left: 3px solid #00EAFF;
-            font-weight: 500;
-            margin-bottom: 30px;
-        }
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            font-family: 'Space Grotesk', monospace;
-            margin-bottom: 15px;
-        }
-        .section-sub {
-            color: #7F89B0;
-            margin-bottom: 48px;
-            border-left: 3px solid #00EAFF;
-            padding-left: 20px;
-        }
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        .tech-card {
-            background: rgba(8, 12, 25, 0.75);
-            backdrop-filter: blur(4px);
-            border-radius: 28px;
-            padding: 32px 24px;
-            border: 1px solid rgba(0, 234, 255, 0.2);
-            transition: all 0.3s;
-        }
-        .tech-card i { font-size: 2.5rem; color: #00EAFF; margin-bottom: 20px; }
-        .tech-card h3 { font-size: 1.7rem; font-weight: 600; margin-bottom: 12px; }
-        .tech-card p { color: #B7C0E0; line-height: 1.5; }
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin: 50px 0;
-        }
-        .pillar {
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(4px);
-            border-radius: 28px;
-            padding: 28px 16px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: 0.2s;
-        }
-        .pillar:hover { border-color: #00EAFF; transform: translateY(-5px); }
-        .pillar h4 {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(145deg, #FFFFFF, #9beaff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 12px;
-        }
-        .pillar p { font-size: 0.85rem; color: #B0BBE5; }
-        .load-section {
-            background: linear-gradient(135deg, rgba(0, 20, 30, 0.8), rgba(2, 5, 18, 0.9));
-            border-radius: 48px;
-            padding: 48px 40px;
-            margin: 60px 0;
-            border: 1px solid rgba(0, 234, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        }
-        .load-today {
-            font-family: 'Space Grotesk', monospace;
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        .price-badge {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(145deg, #FFF, #00f2ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .price-footnote { color: #8892b0; font-size: 0.9rem; }
-        .scan-area {
-            background: rgba(0,0,0,0.6);
-            border-radius: 32px;
-            padding: 20px;
-            text-align: center;
-            border: 1px dashed #00EAFF;
-            margin-top: 30px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .scan-area:hover { background: rgba(0,234,255,0.1); border-color: #00EAFF; box-shadow: 0 0 15px rgba(0,234,255,0.2); }
-        footer {
-            margin-top: 80px;
-            padding: 40px 0 30px;
-            border-top: 1px solid rgba(0, 234, 255, 0.2);
-            font-size: 0.8rem;
-            color: #6F78A0;
-        }
-        @media (max-width: 780px) {
-            h1 { font-size: 2.5rem; }
-            .navbar { flex-direction: column; gap: 20px; }
-            .nav-links { justify-content: center; gap: 1.2rem; }
-            .container { padding: 0 20px; }
-            .load-today { font-size: 1.8rem; }
-            .price-badge { font-size: 2.2rem; }
-            .load-section { padding: 30px 20px; }
+        .cta-btn:hover {
+            background: var(--accent-cyan); color: #000;
+            box-shadow: 0 0 25px var(--accent-cyan);
         }
 
-        /* MODAL STYLES */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            justify-content: center;
+        /* Hero Section */
+        section.hero {
+            padding-top: 180px; padding-bottom: 100px;
+            min-height: 100vh; display: flex; align-items: center;
+            position: relative;
+        }
+        .hero-grid {
+            max-width: 1300px; margin: 0 auto; padding: 0 50px;
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px;
             align-items: center;
         }
-        .modal-content {
-            background: rgba(10, 15, 30, 0.95);
-            border: 1px solid #00EAFF;
-            border-radius: 48px;
-            max-width: 480px;
-            width: 90%;
-            padding: 32px 28px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(0,234,255,0.3);
-            animation: fadeUp 0.3s ease;
+        .hero-tag {
+            font-family: 'Roboto Mono', monospace; color: var(--accent-red);
+            font-size: 14px; letter-spacing: 3px; font-weight: bold; margin-bottom: 20px;
         }
-        .modal-content i { font-size: 3rem; color: #00EAFF; margin-bottom: 16px; }
-        .modal-content h3 { font-size: 1.8rem; margin-bottom: 12px; font-family: 'Space Grotesk', monospace; }
-        .modal-content p { color: #B0B8E0; line-height: 1.5; margin-bottom: 24px; }
-        .close-modal {
-            background: transparent;
-            border: 1px solid #00EAFF;
-            padding: 8px 28px;
-            border-radius: 60px;
-            color: #00EAFF;
-            cursor: pointer;
-            transition: 0.2s;
-            font-weight: 600;
+        .hero h1 {
+            font-size: 64px; font-weight: 900; line-height: 1.1;
+            margin-bottom: 30px; letter-spacing: -1px;
         }
-        .close-modal:hover { background: #00EAFF20; }
+        .hero p { font-size: 18px; color: var(--text-dim); max-width: 600px; margin-bottom: 40px; }
+        
+        .hero-graphic {
+            border: 1px solid #1a1a26; background: var(--panel-dark);
+            height: 450px; position: relative; border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+        }
+        .grid-bg {
+            position: absolute; width: 200%; height: 200%;
+            background-image: linear-gradient(rgba(26,26,38,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(26,26,38,0.15) 1px, transparent 1px);
+            background-size: 30px 30px; transform: rotateX(60deg) translateY(-30%);
+            animation: grid-move 20s infinite linear; opacity: 0.5;
+        }
+        @keyframes grid-move { 0% { transform: rotateX(60deg) translateY(0); } 100% { transform: rotateX(60deg) translateY(-50%); } }
+
+        .center-hud {
+            z-index: 2; text-align: center; font-family: 'Roboto Mono', monospace;
+        }
+        .center-hud i { font-size: 70px; color: var(--accent-cyan); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        /* Tech Features Section */
+        .section-title {
+            text-align: center; font-size: 36px; font-family: 'Orbitron', sans-serif;
+            margin-bottom: 60px; letter-spacing: 2px;
+        }
+        .section-title span { color: var(--accent-cyan); }
+        
+        .features-section { padding: 100px 50px; max-width: 1300px; margin: 0 auto; }
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .tech-card {
+            background: var(--panel-dark); border: 1px solid #1a1a26;
+            padding: 40px 30px; border-radius: 4px; position: relative; transition: 0.3s;
+        }
+        .tech-card:hover {
+            border-color: var(--accent-cyan); transform: translateY(-5px);
+            box-shadow: var(--border-glow);
+        }
+        .tech-card .icon-wrap {
+            width: 60px; height: 60px; background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: var(--accent-cyan); margin-bottom: 30px;
+        }
+        .tech-card h3 { font-family: 'Orbitron', sans-serif; font-size: 20px; margin-bottom: 15px; letter-spacing: 1px; }
+        .tech-card p { color: var(--text-dim); font-size: 15px; }
+
+        /* Core Matrix Pillars Table */
+        .matrix-section { padding: 100px 50px; max-width: 1300px; margin: 0 auto; }
+        .table-container {
+            background: var(--panel-dark); border: 1px solid #1a1a26; border-radius: 4px; overflow: hidden;
+        }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th {
+            background: #11111a; padding: 22px 30px; font-family: 'Orbitron', sans-serif;
+            font-size: 14px; letter-spacing: 2px; color: var(--accent-cyan); border-bottom: 1px solid #1a1a26;
+        }
+        td { padding: 22px 30px; border-bottom: 1px solid #12121a; font-size: 16px; }
+        tr:last-child td { border-bottom: none; }
+        .pillar-tag {
+            font-family: 'Roboto Mono', monospace; font-weight: bold;
+            background: rgba(255, 0, 60, 0.1); border: 1px solid rgba(255, 0, 60, 0.3);
+            color: var(--accent-red); padding: 4px 12px; border-radius: 2px; font-size: 13px;
+        }
+
+        /* Pricing & Logistics Section */
+        .pricing-section { padding: 100px 50px; max-width: 1300px; margin: 0 auto; text-align: center; }
+        .price-box {
+            background: radial-gradient(circle at center, #11111a 0%, var(--panel-dark) 100%);
+            border: 1px solid #1a1a26; max-width: 700px; margin: 0 auto;
+            padding: 60px 40px; border-radius: 4px; position: relative;
+        }
+        .price-box::before {
+            content: 'SANTO DOMINGO EXCLUSIVE'; position: absolute; top: -12px; left: 50%;
+            transform: translateX(-50%); background: var(--accent-gold); color: #000;
+            font-family: 'Roboto Mono', monospace; font-size: 11px; font-weight: bold;
+            padding: 2px 16px; letter-spacing: 2px; border-radius: 2px;
+        }
+        .price-tag {
+            font-family: 'Orbitron', sans-serif; font-size: 84px; font-weight: 900;
+            color: var(--accent-gold); margin: 20px 0; line-height: 1;
+        }
+        .price-desc { font-family: 'Roboto Mono', monospace; color: var(--text-dim); margin-bottom: 40px; font-size: 14px; }
+        
+        .logistics-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; text-align: left;
+        }
+        .logistics-card {
+            border-left: 3px solid var(--accent-cyan); padding-left: 20px;
+        }
+        .logistics-card h4 { font-family: 'Orbitron', sans-serif; font-size: 16px; margin-bottom: 8px; color: var(--text-light); }
+        .logistics-card p { font-size: 14px; color: var(--text-dim); }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #1a1a26; padding: 40px 50px; text-align: center;
+            font-family: 'Roboto Mono', monospace; font-size: 12px; color: var(--text-dim);
+        }
     </style>
 </head>
 <body>
-<div class="bg-glow"></div>
-<div class="bg-glow-2"></div>
 
-<div class="container">
-    <nav class="navbar">
-        <div class="logo">NEXUS MEDICAL</div>
-        <div class="nav-links">
-            <a class="nav-about" data-info="About Nexus Medical: World-class cybernetic surgeons with 98% patient satisfaction.">About Us</a>
-            <a class="nav-prosthetics" data-info="Our prosthetics range from bio-limb replacements to cognitive neural links. Request catalogue.">Prosthetics & Cyberware</a>
-            <a href="#" style="border-bottom: 2px solid #00EAFF;" class="nav-santodomingo" data-info="The Santo Domingo Plan includes home pickup, full integration, and 6 months elite aftercare.">The Santo Domingo Plan</a>
-            <a class="nav-care" data-info="24/7 patient concierge, remote health monitoring, and AI-assisted physical therapy.">Patient Care</a>
-            <button class="btn-outline-cyan" id="bookConsultBtn"><i class="fas fa-calendar-alt"></i> BOOK CONSULTATION</button>
+    <nav>
+        <div class="logo-area">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+                <polygon points="50,15 80,45 65,45 50,30 35,45 20,45"/>
+                <polygon points="50,43 85,78 70,78 50,58 30,78 15,78"/>
+                <circle cx="50" cy="88" r="4"/>
+            </svg>
+            <div class="logo-text">ARASAKA</div>
         </div>
+        <ul class="nav-links">
+            <li><a href="#hero" class="active">Overview</a></li>
+            <li><a href="#specs">Specifications</a></li>
+            <li><a href="#matrix">Core Pillars</a></li>
+            <li><a href="#pricing">Logistics & Price</a></li>
+        </ul>
+        <button class="cta-btn" onclick="window.location.href='#pricing'">BOOK CLINIC</button>
     </nav>
 
-    <section class="hero">
-        <div class="hero-badge"><i class="fas fa-microchip"></i> NEXT-GEN BIOMECHANICS</div>
-        <h1>Reframe Your<br>Evolution.</h1>
-        <div class="home-to-hospital"><i class="fas fa-car-side"></i> From your home → to hospital → elite recovery</div>
-        <p class="hero-sub">The Santo Domingo Prosthetic Transformation Plan: seamless integration from your residence to our premium facilities. Experience the future of human augmentation — zero pain, total bio-synchronization.</p>
-        <div style="display: flex; gap: 18px; flex-wrap: wrap;">
-            <button class="btn-primary" id="beginTransformBtn"><i class="fas fa-syringe"></i> Begin Your Transformation</button>
-            <button class="btn-secondary" id="viewPricingBtn"><i class="fas fa-chart-line"></i> View Pricing</button>
-        </div>
-    </section>
-
-    <section>
-        <div class="section-title">Engineered for Perfection</div>
-        <div class="section-sub">Breaking the boundaries between biology and technology — zero awareness, bio-electric symbiosis, and total somatic mastery.</div>
-        <div class="grid-3">
-            <div class="tech-card"><i class="fas fa-brain"></i><h3>Zero Sensory Awareness</h3><p>High-tech neural plug-in interface with total pain signal suppression. Once calibrated, the prosthetic feels entirely organic — zero friction, zero discomfort. Pure fusion of mind and machine.</p><div style="margin-top: 12px; font-size:0.8rem; color:#00EAFF;"><i class="fas fa-bolt"></i> no pain • instant reflex</div></div>
-            <div class="tech-card"><i class="fas fa-charging-station"></i><h3>Bio-Electric Autonomy</h3><p>Self-sustaining power architecture. Forgets charging cables — harvests kinetic & thermal energy from your own bio-electricity. Continuous power, driven by your metabolism.</p><div style="margin-top: 12px; font-size:0.8rem; color:#00EAFF;"><i class="fas fa-database"></i> no need charge • body-powered</div></div>
-            <div class="tech-card"><i class="fas fa-heartbeat"></i><h3>Total Somatic Synchronization</h3><p>6-month comprehensive post-op care and elite physical reprogramming. Complete cybernetic mastery, enhanced strength, reflexes, and cognitive output — greater than your original body.</p><div style="margin-top: 12px; font-size:0.8rem; color:#00EAFF;"><i class="fas fa-chart-simple"></i> 6 month care • greater your body</div></div>
-        </div>
-        <p style="text-align: center; font-style: italic; background: rgba(0,0,0,0.3); border-radius: 40px; padding: 8px; max-width: 600px; margin: 0 auto; font-size:0.85rem;"><i class="fas fa-microchip"></i> High-tech plug-in • total body control • neural handshake guaranteed</p>
-    </section>
-
-    <section style="margin-top: 60px;">
-        <div class="section-title">The Nexus Advantage</div>
-        <div class="section-sub">Why the world's elite choose our cyber-surgical network</div>
-        <div class="pillars-grid">
-            <div class="pillar"><h4>EXPERT</h4><p>Directed by leading neurosurgeons & cyberware engineers. Nobel-awarded research.</p></div>
-            <div class="pillar"><h4>PROFESSIONAL</h4><p>Elite, hospital-grade environments. ISO 7 cleanrooms & sterile state-of-the-art tech.</p></div>
-            <div class="pillar"><h4>FAST</h4><p>Streamlined outpatient procedure. Ultra-accelerated recovery — ambulatory in hours.</p></div>
-            <div class="pillar"><h4>SAFE</h4><p>Triple-certified bio-compatible alloys. Zero rejection rate guarantee.</p></div>
-            <div class="pillar"><h4>INCREASE</h4><p>Quantifiable upgrades: +340% tensile strength, +180ms reflex gain, cognitive data stream.</p></div>
-        </div>
-    </section>
-
-    <section>
-        <div class="load-section" id="priceSection">
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
-                <div><div class="load-today"><i class="fas fa-rocket"></i> LOAD TODAY. LEAVE TODAY.</div><p style="margin-top: 15px; font-size: 1rem; max-width: 500px;">Our medical response team coordinates your admission and neural prep the very same day — from your doorstep to the operation suite. Zero downtime, maximum precision.</p><div style="margin-top: 20px;"><i class="fas fa-shuttle-van"></i> 24/7 Biometric Transport Fleet</div></div>
-                <div style="text-align: right;"><div class="price-badge">¥114,500</div><div class="price-footnote">starting from · basic prosthetic hardware<br>neural integration + 6-mo post-op care</div><button class="btn-primary" id="secureSlotBtn" style="margin-top: 16px; padding: 12px 28px;"><i class="fas fa-credit-card"></i> Secure Your Slot</button></div>
+    <section class="hero" id="hero">
+        <div class="hero-grid">
+            <div class="hero-info">
+                <div class="hero-tag">// SPECIAL MEDICAL PROJECT</div>
+                <h1 class="glitch-text" data-text="REFRAME YOUR BIOLOGY.">REFRAME YOUR BIOLOGY.</h1>
+                <p>Welcome to the premium Santo Domingo Prosthetic Transformation Plan. Engineered for individuals seeking flawless adaptation, unmatched structural integrity, and deep neural synchronization. From your current localization directly to our elite facility.</p>
+                <button class="cta-btn" style="padding: 15px 35px;" onclick="window.location.href='#pricing'">INITIALIZE ADMISSION</button>
             </div>
-            <div class="scan-area" id="scanArea"><i class="fas fa-fingerprint" style="font-size: 28px; color: #00EAFF; margin-bottom: 10px; display: block;"></i><p><strong>Scan Biometric ID to Begin</strong><br><span style="font-size: 0.75rem;">(retina / palm-vein / neural imprint ready)</span></p><div style="width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #00EAFF, transparent); margin: 15px 0;"></div><i class="fas fa-qrcode" style="opacity: 0.7; letter-spacing: 2px;">  SIMULATED NEURAL GATEWAY  </i></div>
+            <div class="hero-graphic">
+                <div class="grid-bg"></div>
+                <div class="center-hud">
+                    <i class="fa-solid fa-fingerprint"></i>
+                    <p style="margin-top:20px; font-size:12px; letter-spacing:2px; color:var(--accent-cyan)">BIOMETRIC SECURE LINK</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; margin: 40px 0;">
-        <div style="flex:1; min-width: 200px;"><i class="fas fa-hospital-user" style="font-size: 2rem; color:#00EAFF;"></i><h3 style="margin: 10px 0 8px;">From your home → Hospital</h3><p style="color:#B0B8E0;">Concierge-level extraction and direct admission. No waiting lists, no bureaucracy.</p></div>
-        <div style="flex:1; min-width: 200px;"><i class="fas fa-waveform" style="font-size: 2rem; color:#00EAFF;"></i><h3 style="margin: 10px 0 8px;">Neural Synchronization</h3><p style="color:#B0B8E0;">Full body-control integration. Your thoughts become action with zero latency.</p></div>
-        <div style="flex:1; min-width: 200px;"><i class="fas fa-shield-alt" style="font-size: 2rem; color:#00EAFF;"></i><h3 style="margin: 10px 0 8px;">6-Month Elite Care</h3><p style="color:#B0B8E0;">Monthly recalibration, physio-neural training, and performance analytics dashboard.</p></div>
-    </div>
+    <section class="features-section" id="specs">
+        <h2 class="section-title">ENGINEERED <span>PERFECTION</span></h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="icon-wrap"><i class="fa-solid fa-brain"></i></div>
+                <h3>0 Awareness</h3>
+                <p>Advanced high-tech neural plug-ins bypass biological rejection. Operates seamlessly beneath conscious threshold, offering zero friction and immediate cortical acceptance.</p>
+            </div>
+            <div class="tech-card">
+                <div class="icon-wrap"><i class="fa-solid fa-bolt"></i></div>
+                <h3>No Need Charge</h3>
+                <p>Equipped with internal bio-electric micro-cells that harvest thermal and kinetic energy directly from human somatic feedback. Absolute energy autonomy.</p>
+            </div>
+            <div class="tech-card">
+                <div class="icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Total Control</h3>
+                <p>Includes a mandatory, elite 6-month post-operative care and synchronization program. Guarantees 100% calibration with muscle-growth and motor reflexes.</p>
+            </div>
+        </div>
+    </section>
 
-    <div style="margin: 40px 0 20px; background: rgba(0, 234, 255, 0.03); border-radius: 40px; padding: 28px; text-align: center;">
-        <p style="font-size: 1.1rem;"><i class="fas fa-robot"></i> “Total somatic command — your body, amplified. No pain, no external charging, no limits.”</p>
-        <p style="margin-top: 14px;">✔ 0 awareness ✔ high-tech plug-in ✔ charge by your own bio-electricity ✔ full motor control ✔ 6 month post-op transformation guarantee</p>
-        <div style="margin: 24px auto; width: fit-content;"><button class="btn-secondary" id="scheduleAssessmentBtn" style="font-weight: bold;"><i class="fas fa-head-side-medical"></i> Schedule Free Neural Assessment</button></div>
-    </div>
+    <section class="matrix-section" id="matrix">
+        <h2 class="section-title">THE <span>ARASAKA MATRIX</span></h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>OPERATIONAL PILLAR</th>
+                        <th>TECHNICAL STANDARD</th>
+                        <th>SYSTEM RETURN EXPECTATION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="pillar-tag">EXPERT</span></td>
+                        <td>Managed by top neurosurgeons and structural cyberware engineers.</td>
+                        <td>Zero surgical derivation, micro-millimeter precision placement.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pillar-tag">PROFESSION</span></td>
+                        <td>Hospital-grade sterile execution chambers, Grade-5 Titanium matrix.</td>
+                        <td>Absolute elimination of standard tissue contamination risks.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pillar-tag">FAST</span></td>
+                        <td>Streamlined micro-invasive surgical protocols.</td>
+                        <td>Accelerated structural recovery. Leave operational within hours.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pillar-tag">SAFE</span></td>
+                        <td>Triple-layered hardware firewalls & bio-compatible plating.</td>
+                        <td>Complete insulation from local network breaches and organic rejection.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pillar-tag">INCREASE</span></td>
+                        <td>Integrated neural signal amplifiers.</td>
+                        <td>Substantial acceleration in raw cognitive data processing and reflex index.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="pricing">
+        <h2 class="section-title">ADMISSION <span>& VALUATION</span></h2>
+        <div class="price-box">
+            <p style="font-family: 'Roboto Mono', monospace; font-size:14px; letter-spacing:1px;">TOTAL PLAN PACKAGE RETAIL COST</p>
+            <div class="price-tag">¥114,500</div>
+            <p class="price-desc">INCLUSIVE OF PROSTHETIC HARDWARE, NEURAL COUPLING, AND 6 MONTHS COMPREHENSIVE RECOVERY MONITORING.</p>
+            
+            <div style="border-top: 1px solid #1a1a26; padding-top: 30px;">
+                <h3 style="font-family:'Orbitron'; font-size:20px; color:var(--accent-cyan); letter-spacing:1px;">LOAD TODAY, LEAVE TODAY</h3>
+                <p style="font-size:14px; color:var(--text-dim); margin-top:10px;">Frictionless process. Same-day transport mobilization, surgical execution, and neural sync authorization.</p>
+            </div>
+
+            <div class="logistics-grid">
+                <div class="logistics-card">
+                    <h4>Direct Deployment</h4>
+                    <p>Secured medical transport unit deploys to your home coordinate instantly upon transaction authentication.</p>
+                </div>
+                <div class="logistics-card">
+                    <h4>Instant Adaptability</h4>
+                    <p>Neural circuits settle immediately, ensuring full legal mobile capacity the moment you exit the operating table.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
-            <div><div class="logo" style="font-size: 1.3rem;">NEXUS MEDICAL</div><p style="margin-top: 12px;">Santo Domingo Division — Cyber Prosthetics & Neural Integration<br>© 2026 Nexus Medical Group. All rights reserved.</p></div>
-            <div><p><i class="fas fa-flask"></i> Advanced Biomechatronics Lab</p><p><i class="fas fa-shield-heart"></i> ISO 13485 / IEC 60601</p><p><i class="fas fa-globe"></i> Global access program</p></div>
-            <div><p><i class="fas fa-envelope"></i> care@nexusmedical.sd</p><p><i class="fas fa-phone-alt"></i> +1 (809) 227-9990</p><p><i class="fab fa-discord"></i> Neural Support 24/7</p></div>
-        </div>
-        <div style="margin-top: 30px; font-size: 0.7rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;">Disclaimer: Neural integration requires preliminary biometric screening. Results may vary based on individual bio-electric output. All procedures meet international cyber-medical standards.</div>
+        <p>© 2026 ARASAKA MEDICAL CORP. / SANTO DOMINGO ADMISSION NODE. ALL RIGHTS SECURITY ENFORCED.</p>
+        <p style="color: #333; margin-top: 5px;">RESTRICTED UNDER CYBER-REGULATORY EXECUTIVE ORDER 77-B</p>
     </footer>
-</div>
 
-<!-- MODAL STRUCTURE -->
-<div id="interactiveModal" class="modal">
-    <div class="modal-content">
-        <i id="modalIcon" class="fas fa-info-circle"></i>
-        <h3 id="modalTitle">Nexus Medical</h3>
-        <p id="modalMessage">This is a demo interaction. Please contact our specialists for real procedure.</p>
-        <button class="close-modal" id="closeModalBtn">Close</button>
-    </div>
-</div>
-
-<script>
-    (function() {
-        // Modal elements
-        const modal = document.getElementById('interactiveModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalMessage = document.getElementById('modalMessage');
-        const modalIcon = document.getElementById('modalIcon');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-
-        function showModal(title, message, iconClass = 'fas fa-info-circle') {
-            modalTitle.innerText = title;
-            modalMessage.innerText = message;
-            modalIcon.className = iconClass;
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-        closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
-
-        // Helper for smooth scroll
-        function smoothScrollTo(element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        // BUTTON INTERACTIONS
-        // 1. BOOK CONSULTATION
-        document.getElementById('bookConsultBtn').addEventListener('click', () => {
-            showModal('📅 Schedule Consultation', 'One of our cyber-medical concierges will contact you within 2 hours to arrange your biometric screening and home pickup. Premium service, zero delay.', 'fas fa-calendar-check');
+    <script>
+        // Smooth scrolling active links indicator
+        window.addEventListener('scroll', () => {
+            let scrollDistance = window.scrollY;
+            document.querySelectorAll('section').forEach((el, i) => {
+                if (el.offsetTop - 200 <= scrollDistance) {
+                    document.querySelectorAll('.nav-links a').forEach((el) => {
+                        if (el.classList.contains('active')) el.classList.remove('active');
+                    });
+                    document.querySelectorAll('.nav-links li')[i].querySelector('a').classList.add('active');
+                }
+            });
         });
-
-        // 2. Begin Your Transformation
-        document.getElementById('beginTransformBtn').addEventListener('click', () => {
-            showModal('🚀 Begin Your Evolution', 'You will be guided through a 3-step neural mapping process. First, a non-invasive EEG scan, then custom prosthetic design, and finally the painless plug-in surgery. Ready to redefine human limits.', 'fas fa-rocket');
-        });
-
-        // 3. View Pricing -> smooth scroll to price section + highlight
-        document.getElementById('viewPricingBtn').addEventListener('click', () => {
-            const priceSec = document.getElementById('priceSection');
-            smoothScrollTo(priceSec);
-            priceSec.style.transition = '0.3s';
-            priceSec.style.boxShadow = '0 0 0 2px #00EAFF, 0 0 30px #00EAFF';
-            setTimeout(() => { priceSec.style.boxShadow = ''; }, 1200);
-            showModal('💰 Pricing & Packages', 'Basic package: ¥114,500 (prosthetic + surgery + 6 months care). Elite neural-link upgrade: +¥45,000. Full body augmentation: contact sales. Financing available for qualified candidates.', 'fas fa-chart-line');
-        });
-
-        // 4. Secure Your Slot
-        document.getElementById('secureSlotBtn').addEventListener('click', () => {
-            showModal('🔐 Secure Your Transformation', 'Your slot is reserved for 48 hours. To finalize, a 20% deposit is required. Nexus Medical will send a secure payment link to your neural ID. (Demo mode: no actual charge)', 'fas fa-credit-card');
-        });
-
-        // 5. Schedule Free Neural Assessment
-        document.getElementById('scheduleAssessmentBtn').addEventListener('click', () => {
-            showModal('🧠 Neural Assessment', 'Our AI-driven assessment takes 12 minutes. After completion you receive a detailed report of compatibility and recommended cybernetic enhancements. Click confirm to start (simulated).', 'fas fa-brain');
-        });
-
-        // 6. Scan Area (biometric)
-        const scanArea = document.getElementById('scanArea');
-        scanArea.addEventListener('click', () => {
-            showModal('🟢 Biometric Verification', 'Retina scan & palm-vein authentication successful. Welcome, Nexus Prime member. Your neural handshake is approved. Proceed to pre-surgery briefing.', 'fas fa-fingerprint');
-        });
-
-        // 7. Navigation links (About, Prosthetics, Santo Domingo Plan, Patient Care)
-        document.querySelector('.nav-about').addEventListener('click', (e) => {
-            e.preventDefault();
-            showModal('🏥 About Nexus Medical', 'Founded in 2029, Nexus Medical leads the world in cybernetic limb replacement and neural integration. Our Santo Domingo facility is the most advanced in Latin America. Board-certified specialists only.');
-        });
-        document.querySelector('.nav-prosthetics').addEventListener('click', (e) => {
-            e.preventDefault();
-            showModal('🦾 Prosthetics & Cyberware', 'From neuro-synaptic hands to subdermal armor plating. All prosthetics feature bio-electric charging and zero-awareness interface. Catalog available in 12 languages.');
-        });
-        document.querySelector('.nav-santodomingo').addEventListener('click', (e) => {
-            e.preventDefault();
-            showModal('🏝️ Santo Domingo Transformation Plan', 'Includes: home medical extraction, 5-star recovery suite, 6 months of neural physiotherapy, and lifetime software updates. The ultimate human enhancement journey.');
-        });
-        document.querySelector('.nav-care').addEventListener('click', (e) => {
-            e.preventDefault();
-            showModal('🩺 Patient Care', 'Remote health dashboard, 24/7 specialist chat, and annual recalibration. Our care extends beyond surgery — we keep your cybernetic body at peak performance.');
-        });
-
-        // Extra: also make any other button-like elements functional, e.g., if there are more .btn-primary inside? already covered.
-        // Adding micro-interaction for "LOAD TODAY" area card hover + any potential future buttons.
-        // Additionally, tech card titles not buttons but everything interactive stays as above.
-        console.log('Interactive features loaded — all buttons and scan area ready.');
-    })();
-</script>
+    </script>
 </body>
 </html>
